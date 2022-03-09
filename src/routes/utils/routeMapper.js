@@ -1,5 +1,4 @@
 const express = require('express');
-const { errors } = require('celebrate');
 const requestValidator = require('../../middlewares/requestValidator');
 const controller = require('../../controllers');
 
@@ -12,32 +11,38 @@ const routeMapper = (collectionConfig) => {
 	} = collectionConfig;
 
 	const routeHelper = {
-		GET: (_path, _method, _validations) => {
+		USE: (_path, _controllerName) => {
+			router.use(
+				// TODO: add a optional path
+				controller(collectionID, _controllerName),
+			);
+		},
+		GET: (_path, _controllerName, _validations) => {
 			router.get(
 				_path,
 				requestValidator(_validations),
-				controller(collectionID, _method),
+				controller(collectionID, _controllerName),
 			);
 		},
-		POST: (_path, _method, _validations) => {
+		POST: (_path, _controllerName, _validations) => {
 			router.post(
 				_path,
 				requestValidator(_validations),
-				controller(collectionID, _method),
+				controller(collectionID, _controllerName),
 			);
 		},
-		PUT: (_path, _method, _validations) => {
+		PUT: (_path, _controllerName, _validations) => {
 			router.put(
 				_path,
 				requestValidator(_validations),
-				controller(collectionID, _method),
+				controller(collectionID, _controllerName),
 			);
 		},
-		DELETE: (_path, _method, _validations) => {
+		DELETE: (_path, _controllerName, _validations) => {
 			router.put(
 				_path,
 				requestValidator(_validations),
-				controller(collectionID, _method),
+				controller(collectionID, _controllerName),
 			);
 		},
 	};
@@ -46,19 +51,17 @@ const routeMapper = (collectionConfig) => {
 		const {
 			path = null,
 			method,
+			controllerName,
 			requestValidations = {},
 		} = routeConfig;
 
 		try {
-			routeHelper[method](path, method, requestValidations);
+			routeHelper[method](path, controllerName, requestValidations);
 		} catch (error) {
 			throw new Error(error);
 		}
-
-		router.use(errors());
 	});
 
-	// console.log(router.stack);
 	return router;
 };
 

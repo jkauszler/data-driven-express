@@ -7,9 +7,10 @@ const customer = {
 	collectionID: 'customer',
 	routes: [
 		{
-			name: 'read',
+			name: 'list',
 			path: '/',
 			method: 'GET',
+			controllerName: 'LIST',
 			permissions: [
 				'customer:read',
 				'customer:*',
@@ -19,6 +20,7 @@ const customer = {
 			name: 'create',
 			path: '/create',
 			method: 'POST',
+			controllerName: 'CREATE',
 			permissions: [
 				'customer:create',
 				'customer:*',
@@ -38,6 +40,7 @@ const customer = {
 			name: 'update',
 			path: '/update/:id',
 			method: 'PUT',
+			controllerName: 'UPDATE',
 			permissions: [
 				'customer:update',
 				'customer:*',
@@ -47,6 +50,11 @@ const customer = {
 					id: Joi.string().required(),
 				},
 			},
+		},
+		{
+			name: 'use celebrate',
+			method: 'USE',
+			controllerName: 'USE_CELEBRATE',
 		},
 	],
 };

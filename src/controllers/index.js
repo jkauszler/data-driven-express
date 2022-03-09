@@ -3,10 +3,11 @@ const customer = require('./customer');
 const controllerMapper = (collectionID, method) => {
 	const controllers = {
 		customer: {
-			GET: customer.GET,
-			PUT: customer.PUT,
-			POST: customer.POST,
+			LIST: customer.LIST,
+			UPDATE: customer.UPDATE,
+			CREATE: customer.CREATE,
 			DELETE: customer.DELETE,
+			USE_CELEBRATE: customer.USE_CELEBRATE,
 		},
 	};
 

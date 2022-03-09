@@ -1,8 +1,11 @@
+const { errors } = require('celebrate');
+
 const customer = {
-	GET: (req, res) => res.send('Reading'),
-	PUT: (req, res) => res.send('Updating'),
-	POST: (req, res) => res.send('Creating'),
+	LIST: (req, res) => res.send('Listing'),
+	UPDATE: (req, res) => res.send('Updating'),
+	CREATE: (req, res) => res.send('Creating'),
 	DELETE: (req, res) => res.send('Deleting'),
+	USE_CELEBRATE: errors(),
 };
 
 module.exports = customer;
