@@ -1,4 +1,5 @@
 const express = require('express');
+const { errors } = require('celebrate');
 const requestValidator = require('../../middlewares/requestValidator');
 const controller = require('../../controllers');
 
@@ -43,7 +44,7 @@ const routeMapper = (collectionConfig) => {
 
 	routes.forEach((routeConfig) => {
 		const {
-			path,
+			path = null,
 			method,
 			requestValidations = {},
 		} = routeConfig;
@@ -53,6 +54,8 @@ const routeMapper = (collectionConfig) => {
 		} catch (error) {
 			throw new Error(error);
 		}
+
+		router.use(errors());
 	});
 
 	// console.log(router.stack);
