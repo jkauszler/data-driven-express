@@ -9,7 +9,7 @@ const customer = {
 		{
 			name: 'read',
 			path: '/',
-			method: 'READ',
+			method: 'GET',
 			permissions: [
 				'customer:read',
 				'customer:*',

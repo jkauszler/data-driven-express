@@ -3,7 +3,7 @@ const customer = require('./customer');
 const controllerMapper = (collectionID, method) => {
 	const controllers = {
 		customer: {
-			READ: customer.READ,
+			GET: customer.GET,
 			PUT: customer.PUT,
 			POST: customer.POST,
 			DELETE: customer.DELETE,

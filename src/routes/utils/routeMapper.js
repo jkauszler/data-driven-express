@@ -1,7 +1,8 @@
 const express = require('express');
+const requestValidator = require('../../middlewares/requestValidator');
+const controller = require('../../controllers');
 
 const router = express.Router();
-const controller = require('../../controllers');
 
 const routeMapper = (collectionConfig) => {
 	const {
@@ -10,28 +11,32 @@ const routeMapper = (collectionConfig) => {
 	} = collectionConfig;
 
 	const routeHelper = {
-		READ: (_path, _routeConfig) => {
+		GET: (_path, _method, _validations) => {
 			router.get(
 				_path,
-				controller(collectionID, _routeConfig.method),
+				requestValidator(_validations),
+				controller(collectionID, _method),
 			);
 		},
-		POST: (_path, _routeConfig) => {
+		POST: (_path, _method, _validations) => {
 			router.post(
 				_path,
-				controller(collectionID, _routeConfig.method),
+				requestValidator(_validations),
+				controller(collectionID, _method),
 			);
 		},
-		PUT: (_path, _routeConfig) => {
+		PUT: (_path, _method, _validations) => {
 			router.put(
 				_path,
-				controller(collectionID, _routeConfig.method),
+				requestValidator(_validations),
+				controller(collectionID, _method),
 			);
 		},
-		DELETE: (_path, _routeConfig) => {
+		DELETE: (_path, _method, _validations) => {
 			router.put(
 				_path,
-				controller(collectionID, _routeConfig.method),
+				requestValidator(_validations),
+				controller(collectionID, _method),
 			);
 		},
 	};
@@ -40,12 +45,13 @@ const routeMapper = (collectionConfig) => {
 		const {
 			path,
 			method,
+			requestValidations = {},
 		} = routeConfig;
 
 		try {
-			routeHelper[method](path, routeConfig);
+			routeHelper[method](path, method, requestValidations);
 		} catch (error) {
-			throw new Error(`Error on Route Mapper (routeMapper). Error: ${error}`);
+			throw new Error(error);
 		}
 	});
 

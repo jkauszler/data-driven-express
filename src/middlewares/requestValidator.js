@@ -12,28 +12,40 @@ const joiOptions = {
 	},
 };
 
-const requestValidator = (
-	{
-		headerSchema,
-		paramSchema,
-		querySchema,
-		cookieSchema,
-		signedCookieSchema,
-		bodySchema,
-	},
-) => {
-	celebrate(
+const requestValidator = (options) => {
+	const {
+		header = {},
+		param = {},
+		query = {},
+		cookie = {},
+		signedCookie = {},
+		body = {},
+	} = options;
+
+	return celebrate(
 		// Passing Request properties in order of execution by celebrate
 		{
-			[Segments.HEADERS]: Joi.object().keys(headerSchema) || Joi.any(),
-			[Segments.PARAMS]: Joi.object().keys(paramSchema) || Joi.any(),
-			[Segments.QUERY]: Joi.object().keys(querySchema) || Joi.any(),
-			[Segments.COOKIES]: Joi.object().keys(cookieSchema) || Joi.any(),
-			[Segments.SIGNEDCOOKIES]: Joi.object(signedCookieSchema).keys() || Joi.any(),
-			[Segments.BODY]: Joi.object().keys(bodySchema) || Joi.any(),
+			[Segments.HEADERS]: Object.keys(header).length > 0
+				? Joi.object().keys(header)
+				: Joi.any(),
+			[Segments.PARAMS]: Object.keys(param).length > 0
+				? Joi.object().keys(param)
+				: Joi.any(),
+			[Segments.QUERY]: Object.keys(query).length > 0
+				? Joi.object().keys(query)
+				: Joi.any(),
+			[Segments.COOKIES]: Object.keys(cookie).length > 0
+				? Joi.object().keys(cookie)
+				: Joi.any(),
+			[Segments.SIGNEDCOOKIES]: Object.keys(signedCookie).length > 0
+				? Joi.object().keys(signedCookie)
+				: Joi.any(),
+			[Segments.BODY]: Object.keys(body).length > 0
+				? Joi.object().keys(body)
+				: Joi.any(),
 		},
 		joiOptions,
 	);
 };
 
-export default requestValidator;
+module.exports = requestValidator;
