@@ -1,4 +1,5 @@
 const express = require('express');
+const permissionValidator = require('../../middlewares/permissionValidator');
 const requestValidator = require('../../middlewares/requestValidator');
 const controller = require('../../controllers');
 
@@ -11,37 +12,42 @@ const routeMapper = (collectionConfig) => {
 	} = collectionConfig;
 
 	const routeHelper = {
-		USE: (_path, _controllerName, _validations) => {
+		USE: (_path, _permissions, _controllerName, _validations) => {
 			router.use(
 				_path,
+				permissionValidator(_permissions),
 				requestValidator(_validations),
 				controller(collectionID, _controllerName),
 			);
 		},
-		GET: (_path, _controllerName, _validations) => {
+		GET: (_path, _permissions, _controllerName, _validations) => {
 			router.get(
 				_path,
+				permissionValidator(_permissions),
 				requestValidator(_validations),
 				controller(collectionID, _controllerName),
 			);
 		},
-		POST: (_path, _controllerName, _validations) => {
+		POST: (_path, _permissions, _controllerName, _validations) => {
 			router.post(
 				_path,
+				permissionValidator(_permissions),
 				requestValidator(_validations),
 				controller(collectionID, _controllerName),
 			);
 		},
-		PUT: (_path, _controllerName, _validations) => {
+		PUT: (_path, _permissions, _controllerName, _validations) => {
 			router.put(
 				_path,
+				permissionValidator(_permissions),
 				requestValidator(_validations),
 				controller(collectionID, _controllerName),
 			);
 		},
-		DELETE: (_path, _controllerName, _validations) => {
+		DELETE: (_path, _permissions, _controllerName, _validations) => {
 			router.delete(
 				_path,
+				permissionValidator(_permissions),
 				requestValidator(_validations),
 				controller(collectionID, _controllerName),
 			);
@@ -53,11 +59,17 @@ const routeMapper = (collectionConfig) => {
 			name,
 			path,
 			method,
+			permissions = [],
 			requestValidations = {},
 		} = routeConfig;
 
 		try {
-			routeHelper[method](path, name, requestValidations);
+			routeHelper[method](
+				path,
+				permissions,
+				name,
+				requestValidations,
+			);
 		} catch (error) {
 			throw new Error(error);
 		}
