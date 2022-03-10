@@ -11,9 +11,10 @@ const routeMapper = (collectionConfig) => {
 	} = collectionConfig;
 
 	const routeHelper = {
-		USE: (_path, _controllerName) => {
+		USE: (_path, _controllerName, _validations) => {
 			router.use(
 				_path,
+				requestValidator(_validations),
 				controller(collectionID, _controllerName),
 			);
 		},
@@ -39,7 +40,7 @@ const routeMapper = (collectionConfig) => {
 			);
 		},
 		DELETE: (_path, _controllerName, _validations) => {
-			router.put(
+			router.delete(
 				_path,
 				requestValidator(_validations),
 				controller(collectionID, _controllerName),
