@@ -13,7 +13,7 @@ const routeMapper = (collectionConfig) => {
 	const routeHelper = {
 		USE: (_path, _controllerName) => {
 			router.use(
-				// TODO: add a optional path
+				_path,
 				controller(collectionID, _controllerName),
 			);
 		},
@@ -49,14 +49,14 @@ const routeMapper = (collectionConfig) => {
 
 	routes.forEach((routeConfig) => {
 		const {
-			path = null,
+			name,
+			path,
 			method,
-			controllerName,
 			requestValidations = {},
 		} = routeConfig;
 
 		try {
-			routeHelper[method](path, controllerName, requestValidations);
+			routeHelper[method](path, name, requestValidations);
 		} catch (error) {
 			throw new Error(error);
 		}

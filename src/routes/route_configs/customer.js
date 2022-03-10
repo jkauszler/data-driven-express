@@ -7,20 +7,18 @@ const customer = {
 	collectionID: 'customer',
 	routes: [
 		{
-			name: 'list',
+			name: 'LIST',
 			path: '/',
 			method: 'GET',
-			controllerName: 'LIST',
 			permissions: [
 				'customer:read',
 				'customer:*',
 			],
 		},
 		{
-			name: 'create',
+			name: 'CREATE',
 			path: '/create',
 			method: 'POST',
-			controllerName: 'CREATE',
 			permissions: [
 				'customer:create',
 				'customer:*',
@@ -37,10 +35,9 @@ const customer = {
 			},
 		},
 		{
-			name: 'update',
+			name: 'UPDATE',
 			path: '/update/:id',
 			method: 'PUT',
-			controllerName: 'UPDATE',
 			permissions: [
 				'customer:update',
 				'customer:*',
@@ -52,9 +49,9 @@ const customer = {
 			},
 		},
 		{
-			name: 'use celebrate',
+			name: 'USE_CELEBRATE',
+			path: '',
 			method: 'USE',
-			controllerName: 'USE_CELEBRATE',
 		},
 	],
 };
