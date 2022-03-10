@@ -1,11 +1,9 @@
 const { errors } = require('celebrate');
 
 const customer = {
-	LIST: (req, res) => res.send('Listing'),
-	UPDATE: (req, res) => res.send('Updating'),
-	CREATE: (req, res) => res.send('Creating'),
-	DELETE: (req, res) => res.send('Deleting'),
-	NO_PERMISSIONS: (req, res) => res.send('Public customer info...'),
+	LIST: (req, res) => res.send('Listing...'),
+	CREATE: (req, res) => res.send('Creating...'),
+	UPDATE: (req, res) => res.send('Updating...'),
 	USE_CELEBRATE: errors(),
 };
 
