@@ -7,6 +7,7 @@ const controllers = {
 		CREATE: customer.CREATE,
 		DELETE: customer.DELETE,
 		USE_CELEBRATE: customer.USE_CELEBRATE,
+		NO_PERMISSIONS: customer.NO_PERMISSIONS,
 	},
 };
 

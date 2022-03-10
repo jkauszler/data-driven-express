@@ -20,6 +20,7 @@ app.get('/ping', (req, res) => {
 	res.status(200).send('pong');
 });
 
+// ERROR TEST
 app.get(
 	'/error',
 	(req, res, next) => {
@@ -43,7 +44,6 @@ app.use((req, res) => {
 });
 
 // error handler
-// Why is next required here? Passes error html response without it.
 app.use((err, req, res, next) => {
 	res.status(500).json(
 		{

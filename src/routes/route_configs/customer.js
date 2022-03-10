@@ -8,6 +8,11 @@ const customer = {
 	resourceID: 'customer',
 	routes: [
 		{
+			name: 'NO_PERMISSIONS',
+			path: '/np',
+			method: 'GET',
+		},
+		{
 			name: 'LIST',
 			path: '/',
 			method: 'GET',
