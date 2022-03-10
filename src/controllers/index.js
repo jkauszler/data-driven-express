@@ -10,10 +10,10 @@ const controllers = {
 	},
 };
 
-const controller = (collectionID, method) => {
-	const controllerHandler = controllers[collectionID][method];
+const controller = (resourceID, controllerName) => {
+	const controllerHandler = controllers[resourceID][controllerName];
 	if (!controllerHandler) {
-		throw new Error(`Theres was an error matching a controller for ${collectionID} on ${method}.`);
+		throw new Error(`Theres was an error matching a controller for ${resourceID} on ${controllerName}.`);
 	}
 	return controllerHandler;
 };

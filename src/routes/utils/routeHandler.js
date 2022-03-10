@@ -7,7 +7,7 @@ const router = express.Router();
 
 const routeHandler = (collectionConfig) => {
 	const {
-		collectionID,
+		resourceID,
 		routes,
 	} = collectionConfig;
 
@@ -17,7 +17,7 @@ const routeHandler = (collectionConfig) => {
 				_path,
 				permissionValidator(_permissions),
 				requestValidator(_validations),
-				controller(collectionID, _controllerName),
+				controller(resourceID, _controllerName),
 			);
 		},
 		GET: (_path, _permissions, _controllerName, _validations) => {
@@ -25,7 +25,7 @@ const routeHandler = (collectionConfig) => {
 				_path,
 				permissionValidator(_permissions),
 				requestValidator(_validations),
-				controller(collectionID, _controllerName),
+				controller(resourceID, _controllerName),
 			);
 		},
 		POST: (_path, _permissions, _controllerName, _validations) => {
@@ -33,7 +33,7 @@ const routeHandler = (collectionConfig) => {
 				_path,
 				permissionValidator(_permissions),
 				requestValidator(_validations),
-				controller(collectionID, _controllerName),
+				controller(resourceID, _controllerName),
 			);
 		},
 		PUT: (_path, _permissions, _controllerName, _validations) => {
@@ -41,7 +41,7 @@ const routeHandler = (collectionConfig) => {
 				_path,
 				permissionValidator(_permissions),
 				requestValidator(_validations),
-				controller(collectionID, _controllerName),
+				controller(resourceID, _controllerName),
 			);
 		},
 		DELETE: (_path, _permissions, _controllerName, _validations) => {
@@ -49,7 +49,7 @@ const routeHandler = (collectionConfig) => {
 				_path,
 				permissionValidator(_permissions),
 				requestValidator(_validations),
-				controller(collectionID, _controllerName),
+				controller(resourceID, _controllerName),
 			);
 		},
 	};

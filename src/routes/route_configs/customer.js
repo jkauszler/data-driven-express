@@ -2,9 +2,10 @@ const { Joi } = require('celebrate');
 
 // Is there a beneficial way to represent the mongo object here?
 
-// NOTE: THE ORDER OF ROUTES MATTER!!!
+// NOTE: JUST LIKE OTHER EXPRESS ROUTES,
+// THE ORDER OF ITEMS IN THE ROUTES ARRAY MATTER!!!
 const customer = {
-	collectionID: 'customer',
+	resourceID: 'customer',
 	routes: [
 		{
 			name: 'LIST',
