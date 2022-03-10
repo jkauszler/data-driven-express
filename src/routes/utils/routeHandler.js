@@ -5,7 +5,7 @@ const controller = require('../../controllers');
 
 const router = express.Router();
 
-const routeMapper = (collectionConfig) => {
+const routeHandler = (collectionConfig) => {
 	const {
 		collectionID,
 		routes,
@@ -78,4 +78,4 @@ const routeMapper = (collectionConfig) => {
 	return router;
 };
 
-module.exports = routeMapper;
+module.exports = routeHandler;

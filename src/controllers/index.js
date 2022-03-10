@@ -1,21 +1,21 @@
 const customer = require('./customer');
 
-const controllerMapper = (collectionID, method) => {
-	const controllers = {
-		customer: {
-			LIST: customer.LIST,
-			UPDATE: customer.UPDATE,
-			CREATE: customer.CREATE,
-			DELETE: customer.DELETE,
-			USE_CELEBRATE: customer.USE_CELEBRATE,
-		},
-	};
-
-	const controller = controllers[collectionID][method];
-	if (!controller) {
-		throw new Error(`Theres was an error matching a controller for ${collectionID} on ${method}.`);
-	}
-	return controller;
+const controllers = {
+	customer: {
+		LIST: customer.LIST,
+		UPDATE: customer.UPDATE,
+		CREATE: customer.CREATE,
+		DELETE: customer.DELETE,
+		USE_CELEBRATE: customer.USE_CELEBRATE,
+	},
 };
 
-module.exports = controllerMapper;
+const controller = (collectionID, method) => {
+	const controllerHandler = controllers[collectionID][method];
+	if (!controllerHandler) {
+		throw new Error(`Theres was an error matching a controller for ${collectionID} on ${method}.`);
+	}
+	return controllerHandler;
+};
+
+module.exports = controller;

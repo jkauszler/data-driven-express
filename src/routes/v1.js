@@ -1,9 +1,9 @@
 const express = require('express');
 const customerConfig = require('./route_configs/customer');
-const routeMapper = require('./utils/routeMapper');
+const routeHandler = require('./utils/routeHandler');
 
 const router = express.Router();
 
-router.use('/customer', routeMapper(customerConfig));
+router.use('/customer', routeHandler(customerConfig));
 
 module.exports = router;
