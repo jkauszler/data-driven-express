@@ -3,7 +3,7 @@ const {
 } = require('celebrate');
 
 const joiOptions = {
-	abortEarly: false,
+	abortEarly: true,
 	errors: {
 		wrap: {
 			label: '[]',

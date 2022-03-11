@@ -8,43 +8,43 @@ const customer = {
 	resourceID: 'customer',
 	routes: [
 		{
-			name: 'LIST',
 			path: '/',
 			method: 'GET',
+			controllerName: 'LIST',
 		},
-		// {
-		// 	name: 'CREATE',
-		// 	path: '/create',
-		// 	method: 'POST',
-		// 	requestValidations: {
-		// 		body: {
-		// 			email: Joi.string().required(),
-		// 			name: Joi.string().required(),
-		// 			dob: Joi.string(),
-		// 			savePaymentInfo: Joi.bool(),
-		// 			stripeCustomerId: Joi.string(),
-		// 			phone: Joi.string(),
-		// 		},
-		// 	},
-		// },
-		// {
-		// 	name: 'UPDATE',
-		// 	path: '/update/:id',
-		// 	method: 'PUT',
-		// 	permissions: [
-		// 		'customer:update',
-		// 		'customer:*',
-		// 	],
-		// 	requestValidations: {
-		// 		params: {
-		// 			id: Joi.string().required(),
-		// 		},
-		// 	},
-		// },
 		{
-			name: 'USE_CELEBRATE',
+			path: '/create',
+			method: 'POST',
+			controllerName: 'CREATE',
+			requestValidations: {
+				body: {
+					email: Joi.string().required(),
+					name: Joi.string().required(),
+					dob: Joi.string(),
+					savePaymentInfo: Joi.bool().default(true),
+					stripeCustomerId: Joi.string(),
+					phone: Joi.string(),
+				},
+			},
+		},
+		{
+			path: '/update/:id',
+			method: 'PUT',
+			controllerName: 'UPDATE',
+			permissions: [
+				'customer:update',
+				'customer:*',
+			],
+			requestValidations: {
+				params: {
+					id: Joi.string().required(),
+				},
+			},
+		},
+		{
 			path: '',
 			method: 'USE',
+			controllerName: 'USE_CELEBRATE',
 		},
 	],
 };
